@@ -1,13 +1,17 @@
-import { browser } from 'protractor';
-import { SearchPageObject } from '../pages/searchPage';
-import { defineSupportCode } from 'cucumber';
-let chai = require('chai').use(require('chai-as-promised'));
-let expect = chai.expect;
+import { browser } from "protractor";
+import { SearchPageObject } from "../pages/searchPage";
+const { Given } = require("cucumber");
+const chai = require("chai").use(require("chai-as-promised"));
+const expect = chai.expect;
 
-defineSupportCode(function ({ Given }) {
-    let search: SearchPageObject = new SearchPageObject();
+const search: SearchPageObject = new SearchPageObject();
 
-    Given(/^I am on google page$/, async () => {
-        await expect(browser.getTitle()).to.eventually.equal('Google');
-    });
-})
+Given(/^I am on "(.*?)" search page$/, async (text) => {
+    if (text === "google") {
+        await expect(browser.getTitle()).to.eventually.equal("Google");
+    } else if (text === "cucumber") {
+        await expect(browser.getTitle()).to.eventually.equal(text + " - Google Search");
+    } else if (text === "protractor") {
+        await expect(browser.getTitle()).to.eventually.equal(text + " - Google Search");
+    } 
+});

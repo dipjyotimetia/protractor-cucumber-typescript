@@ -1,5 +1,7 @@
 node_modules/
-TyepScript/
+TypeScript/
 reports/
 *.js
 .vscode
+.DS_Store
+package-lock.json
